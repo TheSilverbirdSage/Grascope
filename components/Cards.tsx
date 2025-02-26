@@ -13,7 +13,7 @@ import HeaderImage4 from "@/assets/images/page4box.png";
 
 interface CardProps {
     backgroundImage?: string;
-    image: StaticImageData;
+    image?: StaticImageData;
 }
 
 const cards = [
