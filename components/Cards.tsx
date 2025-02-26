@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 import HeaderImage1 from "@/assets/images/page1box.png";
 import HeaderImage2 from "@/assets/images/page2box.png";
