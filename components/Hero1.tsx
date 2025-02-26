@@ -6,12 +6,13 @@ import 'swiper/css/navigation';
 import React, { useEffect, useState, useRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import image from '@/assets/images/Pattern.png';
-import Nav from "@/components/Nav";
+import Nav from '@/components/Nav';
 import Cards from './Cards';
-import Image1 from '@/assets/images/background.png'
-import Image2 from "@/assets/images/background2.png"
-import Image3 from "@/assets/images/background3.png"
-import Image4 from "@/assets/images/background4.png"
+import Image1 from '@/assets/images/background.png';
+import Image2 from '@/assets/images/background2.png';
+import Image3 from '@/assets/images/background3.png';
+import Image4 from '@/assets/images/background4.png';
+import { Swiper as SwiperCore } from 'swiper';
 
 interface SlideData {
     heading: React.ReactNode;
@@ -20,9 +21,8 @@ interface SlideData {
 
 const Hero1: React.FC = () => {
     const [slidesData, setSlidesData] = useState<SlideData[]>([]);
-    const [activeBackground, setActiveBackground] = useState<string>(Image1.src); // Initialize with a fallback value
-    const mainSwiperRef = useRef<any>(null);
-    const cardsSwiperRef = useRef<any>(null);
+    const mainSwiperRef = useRef<SwiperCore | null>(null);
+    const cardsSwiperRef = useRef<SwiperCore | null>(null);
 
     useEffect(() => {
         const initialSlidesData: SlideData[] = [
@@ -147,11 +147,9 @@ const Hero1: React.FC = () => {
         setSlidesData(initialSlidesData);
     }, []);
 
-
-
-    const handleSlideChange = (swiper: any) => {
+    const handleSlideChange = (swiper: SwiperCore) => {
         if (slidesData.length > 0) {
-            setActiveBackground(slidesData[swiper.realIndex].image.src);
+            // If you need to use activeBackground, add it here
         }
         if (cardsSwiperRef.current) {
             cardsSwiperRef.current.slideTo(swiper.realIndex);
@@ -164,7 +162,7 @@ const Hero1: React.FC = () => {
                 <Nav />
             </div>
             <Swiper
-                modules={[Autoplay, Navigation, Controller ]}
+                modules={[Autoplay, Navigation, Controller]}
                 spaceBetween={0}
                 slidesPerView={1}
                 slidesOffsetBefore={0}
@@ -184,10 +182,10 @@ const Hero1: React.FC = () => {
             >
                 {slidesData.map((slide, index) => (
                     <SwiperSlide key={index}>
-                        <div className="h-full relative"> {/* Add relative here */}
+                        <div className="h-full relative">
                             <Image
                                 src={slide.image}
-                                alt="Slide background" // Fix: Use a string for alt
+                                alt="Slide background"
                                 fill
                                 className="object-cover"
                             />
@@ -197,10 +195,7 @@ const Hero1: React.FC = () => {
                         </div>
                     </SwiperSlide>
                 ))}
-                <div
-                className='-mt-52 mb-3'
-                    // style={{ bottom: 200, right: 0 }}
-                >
+                <div className="-mt-52 mb-3">
                     <Cards />
                 </div>
             </Swiper>
