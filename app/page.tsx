@@ -6,7 +6,6 @@ export default function Home() {
       {/* <div className="flex justify-center items-center">
         <Navbar />
       </div>
-      <Hero2 />
       <Cards /> */}
       <Hero1 />
     </>
