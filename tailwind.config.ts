@@ -10,7 +10,10 @@ export default {
     extend: {
       backgroundImage: {
         banner1: "url('/background.png')",
-      }
+      },
+      fontFamily: {
+        outfit: ["Outfit", "sans-serif"],
+      },
     },
   },
   plugins: [],

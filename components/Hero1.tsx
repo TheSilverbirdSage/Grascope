@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Controller } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 import React, { useEffect, useState, useRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import image from '@/assets/images/Pattern.png';
@@ -25,12 +27,18 @@ const Hero1: React.FC = () => {
     const cardsSwiperRef = useRef<SwiperCore | null>(null);
 
     useEffect(() => {
+
+         // Initialize AOS
+        AOS.init({
+            duration: 1000, // Animation duration
+            once: false, // Allow animations to trigger every time
+        });
         const initialSlidesData: SlideData[] = [
             {
                 image: Image1,
                 heading: (
                     <div className="home-heading h-screen relative">
-                        <div className='container py-14'>
+                        <div data-aos="fade-up" className='container py-14'>
                             <div className='pl-20 mt-10'>
                                 <p className='font-normal text-[80px] text-white'>Welcome To</p>
                                 <div className='flex'>
@@ -62,7 +70,7 @@ const Hero1: React.FC = () => {
                 image: Image2,
                 heading: (
                     <div className="home-heading h-screen relative">
-                        <div className='container py-14'>
+                        <div data-aos="fade-left" className='container py-14'>
                             <div className='pl-20 mt-10'>
                                 <p className='font-normal text-[20px] text-white'>Our Solutions</p>
                                 <p className='font-normal text-[80px] text-white'>AgroTech Solutions </p>
@@ -90,7 +98,7 @@ const Hero1: React.FC = () => {
                 image: Image3,
                 heading: (
                     <div className="home-heading h-screen relative">
-                        <div className='container py-14'>
+                        <div data-aos="fade-left" className='container py-14'>
                             <div className='pl-20 mt-10'>
                                 <p className='font-normal text-[20px] text-white'>Our Solutions</p>
                                 <p className='font-normal text-[80px] text-white'>Custom Software Solutions </p>
@@ -118,7 +126,7 @@ const Hero1: React.FC = () => {
                 image: Image4,
                 heading: (
                     <div className="home-heading h-screen relative">
-                        <div className='container py-14'>
+                        <div data-aos="fade-left" className='container py-14'>
                             <div className='pl-20 mt-10'>
                                 <p className='font-normal text-[20px] text-white'>Our Solutions</p>
                                 <p className='font-normal text-[80px] text-white'>E-commerce Solutions </p>
@@ -157,7 +165,7 @@ const Hero1: React.FC = () => {
     };
 
     return (
-        <section className="">
+        <section className="font-outfit">
             <div className="flex justify-center items-center">
                 <Nav />
             </div>
@@ -196,7 +204,7 @@ const Hero1: React.FC = () => {
                     </SwiperSlide>
                 ))}
                 <div className="-mt-52 mb-3">
-                    <Cards />
+                    <Cards swiperRef={cardsSwiperRef} />
                 </div>
             </Swiper>
         </section>
